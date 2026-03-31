@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>출근 리포트</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Header -->
+        <header class="dashboard-header">
+            <h1 id="currentDate">2026-03-31 (화) 출근 리포트</h1>
+            <p id="currentTime">00:00:00</p>
+        </header>
+
+        <!-- Main Layout (2 Columns) -->
+        <main class="dashboard-main">
+            <!-- Section 1: Weather (Left) -->
+            <section class="card section-weather" id="weather-section">
+                <h2>오늘의 날씨</h2>
+                <div class="weather-content">
+                    <div class="weather-icon">☀️</div>
+                    <div class="weather-details">
+                        <p class="temperature">18°C</p>
+                        <p class="desc">맑음, 쾌적한 출근길</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Section 2: Economy (Right) -->
+            <section class="card section-economy" id="economy-section">
+                <h2>주요 경제 지표</h2>
+                <div class="economy-content">
+                    <div class="chart-container">
+                        <canvas id="nasdaqChart"></canvas>
+                    </div>
+                    <div class="exchange-rate">
+                        <p>환율 (USD/KRW): <strong id="fx-rate">1,320.50</strong> <span class="up">▲ 2.5</span></p>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <!-- Section 4: Metal Price Monitoring (New) -->
+        <section class="card section-metal" id="metal-section">
+            <div class="metal-header">
+                <h2>양백(Nickel Silver) 시세 및 계산기</h2>
+                <span class="update-tag">LME 실시간</span>
+            </div>
+            <div class="metal-grid">
+                <!-- LME Indicators -->
+                <div class="metal-indicators">
+                    <div class="indicator-item" id="metal-cu">
+                        <span class="label">구리 (Cu)</span>
+                        <span class="value">$8,950</span>
+                        <span class="status up">▲ 1.2%</span>
+                    </div>
+                    <div class="indicator-item" id="metal-ni">
+                        <span class="label">니켈 (Ni)</span>
+                        <span class="value">$17,200</span>
+                        <span class="status down">▼ 0.8%</span>
+                    </div>
+                    <div class="indicator-item" id="metal-zn">
+                        <span class="label">아연 (Zn)</span>
+                        <span class="value">$2,450</span>
+                        <span class="status up">▲ 0.5%</span>
+                    </div>
+                </div>
+
+                <!-- Price Calculator -->
+                <div class="metal-calculator">
+                    <h3>C7521 이론 단가 계산 (USD)</h3>
+                    <div class="calc-formula">
+                        (Cu × 0.65) + (Ni × 0.18) + (Zn × 0.17)
+                    </div>
+                    <div class="calc-result">
+                        <div class="result-box">
+                            <span class="res-label">이론 단가</span>
+                            <span class="res-value" id="theoretical-price">$0.00</span>
+                        </div>
+                        <div class="result-box highlighted">
+                            <span class="res-label">Strip 입고가 (KRW/ton)</span>
+                            <span class="res-value" id="final-krw-price">0원</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Calendar (Bottom Full Width) -->
+        <section class="card section-calendar" id="calendar-section">
+            <h2>금주 주요 일정 (달력)</h2>
+            <div class="calendar-grid" id="calendar-grid">
+                <!-- Data will be populated via JS -->
+            </div>
+        </section>
+    </div>
+
+    <script src="js/main.js"></script>
+</body>
+</html>
